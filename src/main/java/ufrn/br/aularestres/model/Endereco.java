@@ -1,19 +1,15 @@
 package ufrn.br.aularestres.model;
 
 import lombok.*;
+import ufrn.br.aularestres.model.generic.AbstractEntity;
+
 import javax.persistence.*;
 
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-@ToString
+@Data
 @Entity
-public class Endereco {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
+public class Endereco extends AbstractEntity {
     String rua;
 }

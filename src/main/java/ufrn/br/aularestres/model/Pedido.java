@@ -4,21 +4,17 @@ package ufrn.br.aularestres.model;
 
 
 import lombok.*;
+import ufrn.br.aularestres.model.generic.AbstractEntity;
 
 import javax.persistence.*;
 import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-@ToString
+@Data
 @Entity
-public class Pedido
-{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+public class Pedido extends AbstractEntity{
+
     String dataPedido;
 
     @ManyToOne
