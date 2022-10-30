@@ -1,7 +1,7 @@
 package ufrn.br.aularestres.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import ufrn.br.aularestres.model.Endereco;
+import ufrn.br.aularestres.repository.generic.GenericRepository;
 
-public interface EnderecoRepository extends JpaRepository<Endereco, Long> {
+public interface EnderecoRepository extends GenericRepository<Endereco> {
 }
