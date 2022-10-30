@@ -27,13 +27,7 @@ public class ClienteController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Cliente> listById(@PathVariable Long id){
-        Optional<Cliente> carro = service.listById(id);
-        if (carro.isEmpty()){
-            return ResponseEntity.notFound().build();
-        }else{
-            Cliente c = carro.get();
-            return ResponseEntity.ok().body(c);
-        }
+        return ResponseEntity.ok(service.listById(id));
     }
 
     @PostMapping
@@ -44,29 +38,19 @@ public class ClienteController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
-        return service
-                .listById(id)
-                .map( data -> {
-                    service.delete(data);
-                    return ResponseEntity.status(202).build();
-                }).orElse(
-                        ResponseEntity.notFound().build()
-                );
+        Cliente c = service.listById(id);
+        service.delete(c);
+        return ResponseEntity.status(202).build();
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Cliente> update(@PathVariable Long id, @RequestBody Cliente c){
-
         if(!Objects.equals(id, c.getId())){
             return ResponseEntity.badRequest().build();
         }
-
-        return service
-                .listById(id)
-                .map(data -> {
-                    service.update(c);
-                    return ResponseEntity.ok().body(c);
-                }).orElse(ResponseEntity.notFound().build());
+        service.listById(id);
+        service.update(c);
+        return ResponseEntity.ok().body(c);
     }
 
 }

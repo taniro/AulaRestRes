@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ufrn.br.aularestres.model.Cliente;
 import ufrn.br.aularestres.repository.ClienteRepository;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,7 +38,9 @@ public class ClienteService {
         return repository.findAll();
     }
 
-    public Optional<Cliente> listById(Long id){
-        return  repository.findById(id);
+    public Cliente listById(Long id){
+        Optional<Cliente> cliente = repository.findById(id);
+        if (cliente.isPresent()) return  cliente.get();
+        else throw new EntityNotFoundException("Cliente não encontrado");
     }
 }
