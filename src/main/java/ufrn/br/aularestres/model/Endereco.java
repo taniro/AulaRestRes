@@ -10,6 +10,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 @Entity
-public class Endereco extends AbstractEntity {
+public class Endereco extends AbstractEntity<Endereco> {
     String rua;
 }

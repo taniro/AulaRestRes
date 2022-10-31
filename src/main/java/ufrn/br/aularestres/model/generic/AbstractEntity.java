@@ -4,6 +4,7 @@ package ufrn.br.aularestres.model.generic;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +18,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @MappedSuperclass
-public abstract class AbstractEntity implements Serializable {
+public abstract class AbstractEntity<F extends RepresentationModel<? extends F>> extends RepresentationModel<F> implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
